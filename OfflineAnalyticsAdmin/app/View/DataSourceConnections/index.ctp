@@ -8,7 +8,9 @@
         <th>Host</th>
         <th>Username</th>
         <th>Password</th>
-        <th>Database</th>
+        <th>targetDatabase</th>
+		<th></th>
+		<th></th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
@@ -32,12 +34,12 @@
 		<td><?php echo $datasourceconnection['DataSourceConnection']['password']; ?></td>
 		<td><?php echo $datasourceconnection['DataSourceConnection']['targetDatabase']; ?></td>
 		<td>
-            <button>
-			<?php echo $this->Html->link(
-			$datasourceconnection['DataSourceConnection']['name'],
+			<button>
+            <?php echo $this->Html->link(
+			"Edit",
 				array(
 					'controller' => 'datasourceconnections', 
-					'action' => 'delete', 
+					'action' => 'view', 
 					$datasourceconnection['DataSourceConnection']['id']
 					)
 				); 
@@ -45,12 +47,12 @@
 			</button>
         </td>
 		<td>
-			<button>
-            <?php echo $this->Html->link(
-			$datasourceconnection['DataSourceConnection']['name'],
+            <button>
+			<?php echo $this->Html->link(
+				"Delete",
 				array(
 					'controller' => 'datasourceconnections', 
-					'action' => 'edit', 
+					'action' => 'delete', 
 					$datasourceconnection['DataSourceConnection']['id']
 					)
 				); 
