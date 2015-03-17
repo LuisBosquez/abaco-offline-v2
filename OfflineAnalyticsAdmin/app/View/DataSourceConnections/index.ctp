@@ -31,6 +31,32 @@
 		<td><?php echo $datasourceconnection['DataSourceConnection']['username']; ?></td>
 		<td><?php echo $datasourceconnection['DataSourceConnection']['password']; ?></td>
 		<td><?php echo $datasourceconnection['DataSourceConnection']['targetDatabase']; ?></td>
+		<td>
+            <button>
+			<?php echo $this->Html->link(
+			$datasourceconnection['DataSourceConnection']['name'],
+				array(
+					'controller' => 'datasourceconnections', 
+					'action' => 'delete', 
+					$datasourceconnection['DataSourceConnection']['id']
+					)
+				); 
+			?>
+			</button>
+        </td>
+		<td>
+			<button>
+            <?php echo $this->Html->link(
+			$datasourceconnection['DataSourceConnection']['name'],
+				array(
+					'controller' => 'datasourceconnections', 
+					'action' => 'edit', 
+					$datasourceconnection['DataSourceConnection']['id']
+					)
+				); 
+			?>
+			</button>
+        </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($datasourceconnection); ?>
