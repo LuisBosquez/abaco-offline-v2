@@ -11,7 +11,28 @@
 ?>
 </button>
 <h2>Data Source Connection:</h2>
-
+<button>
+	<?php echo $this->Html->link(
+	"Edit",
+		array(
+			'controller' => 'datasourceconnections', 
+			'action' => 'edit', 
+			$datasourceconnection['DataSourceConnection']['id']
+			)
+		); 
+	?>
+</button>
+<button>
+	<?php echo $this->Html->link(
+		"Delete",
+		array(
+			'controller' => 'datasourceconnections', 
+			'action' => 'delete', 
+			$datasourceconnection['DataSourceConnection']['id']
+			)
+		); 
+	?>
+</button>
 <h3><?php echo h($datasourceconnection['DataSourceConnection']['name']); ?></h3>
 
 <p>ID: <?php echo h($datasourceconnection['DataSourceConnection']['id']); ?></p>
@@ -22,7 +43,18 @@
 
 
 <h3>MeasurementDefinitions</h3>
-<button></button>
+
+<button>
+<?php echo $this->Html->link(
+"Add",
+	array(
+		'controller' => 'measurementdefinitions', 
+		'action' => 'add', 
+		$datasourceconnection['DataSourceConnection']['id']
+		)
+	); 
+?>
+</button>
 <table>
     <tr>
         <th>Id</th>
@@ -34,54 +66,55 @@
 		<th>created</th>
     </tr>
 
-    <!-- Here is where we loop through our $posts array, printing out post info -->
-
-    <?php foreach ($measurementdefinitions as $measurementdefinition): ?>
-    <tr>
-        <td><?php echo $measurementdefinition['MeasurementDefinition']['id']; ?></td>
-        <td>
-            <?php echo $this->Html->link(
-			$measurementdefinition['MeasurementDefinition']['name'],
-				array(
-					'controller' => 'measurementdefinitions', 
-					'action' => 'view', 
-					$measurementdefinition['MeasurementDefinition']['id']
-					)
-				); 
-			?>
-        </td>
-		<td><?php echo $measurementdefinition['MeasurementDefinition']['targetTable']; ?></td>
-		<td><?php echo $measurementdefinition['MeasurementDefinition']['fields']; ?></td>
-		<td><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></td>
-		<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
-		<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
-		<td>
-			<button>
-            <?php echo $this->Html->link(
-			"Edit",
-				array(
-					'controller' => 'MeasurementDefinitions', 
-					'action' => 'edit', 
-					$measurementdefinition['MeasurementDefinition']['id']
-					)
-				); 
-			?>
-			</button>
-        </td>
-		<td>
-            <button>
-			<?php echo $this->Html->link(
-				"Delete",
-				array(
-					'controller' => 'MeasurementDefinitions', 
-					'action' => 'delete', 
-					$measurementdefinition['MeasurementDefinition']['id']
-					)
-				); 
-			?>
-			</button>
-        </td>
-    </tr>
-    <?php endforeach; ?>
+	<?php if ($measurementdefinitions): ?>
+	
+		<?php foreach ($measurementdefinitions as $measurementdefinition): ?>
+		<tr>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['id']; ?></td>
+			<td>
+				<?php echo $this->Html->link(
+				$measurementdefinition['MeasurementDefinition']['name'],
+					array(
+						'controller' => 'measurementdefinitions', 
+						'action' => 'view', 
+						$measurementdefinition['MeasurementDefinition']['id']
+						)
+					); 
+				?>
+			</td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['targetTable']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['fields']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
+			<td>
+				<button>
+				<?php echo $this->Html->link(
+				"Edit",
+					array(
+						'controller' => 'MeasurementDefinitions', 
+						'action' => 'edit', 
+						$measurementdefinition['MeasurementDefinition']['id']
+						)
+					); 
+				?>
+				</button>
+			</td>
+			<td>
+				<button>
+				<?php echo $this->Html->link(
+					"Delete",
+					array(
+						'controller' => 'MeasurementDefinitions', 
+						'action' => 'delete', 
+						$measurementdefinition['MeasurementDefinition']['id']
+						)
+					); 
+				?>
+				</button>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	<?php endif; ?>
     <?php unset($measurementdefinition); ?>
 </table>

@@ -15,13 +15,4 @@
 
 <?php echo $this->Form->input('MeasurementDefinition.fieldMappings', array('label' => 'Field mappings'));?>
 
-<?php echo $this->Form->end('Edit');?>
-<?php echo $this->Html->link(
-	"Delete",
-	array(
-		'controller' => 'MeasurementDefinitions', 
-		'action' => 'delete', 
-		$measurementdefinition['MeasurementDefinition']['id']
-		)
-	); 
-?>
+<?php echo $this->Form->end('Add');?>

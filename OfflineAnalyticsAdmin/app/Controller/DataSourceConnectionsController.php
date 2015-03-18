@@ -21,18 +21,16 @@ class DataSourceConnectionsController extends AppController {
         'conditions' => array('MeasurementDefinition.connection_id' => $id)
 		));
 		
-        if (!$measurementdefinitions) {
-            throw new NotFoundException(__('Invalid post'));
+        if ($measurementdefinitions) {
+            $this->set('measurementdefinitions', $measurementdefinitions);
         }
-        $this->set('measurementdefinitions', $measurementdefinitions);
-		
-		
+		else
+		{
+			$this->set('measurementdefinitions', array());
+		}
     }
 	
 	public function delete($id = null) {
-		if ($this->request->is('get')) {
-			throw new MethodNotAllowedException();
-		}
 		if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
@@ -51,6 +49,46 @@ class DataSourceConnectionsController extends AppController {
 		}
 
 		return $this->redirect(array('action' => 'index'));
+    }
+	
+	public function edit($id)
+	{
+		$datasourceconnection = $this->DataSourceConnection->findById($id);
+        if (!$datasourceconnection) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+		if (empty($this->request->data)) {
+			$this->request->data = $datasourceconnection;
+		}
+		if ($this->request->is('post')) {
+			// If the form data can be validated and saved...
+			$data = $this->request->data;
+			$data['DataSourceConnection']['id'] = $datasourceconnection['DataSourceConnection']['id'];
+			$data['DataSourceConnection']['created'] = $datasourceconnection['DataSourceConnection']['created'];
+			if ($this->DataSourceConnection->save($data)) {
+				// Set a session flash message and redirect.
+				$this->Session->setFlash('Changes saved!');
+				return $this->redirect('/datasourceconnections');
+			}
+		}		
+		// If no form data, find the recipe to be edited
+		// and hand it to the view.
+		
+        $this->set('datasourceconnection', $datasourceconnection);
+	}
+	
+	public function add() {
+        if ($this->request->is('post')) {
+			
+			$data = $this->request->data;
+			$data['DataSourceConnection']['created'] = date("Y-m-d H:i:s");
+            $this->DataSourceConnection->create();
+            if ($this->DataSourceConnection->save($data)) {
+                $this->Session->setFlash(__('Your data source connection was created'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to create data source connection.'));
+        }
     }
 	
 	public function clear() {

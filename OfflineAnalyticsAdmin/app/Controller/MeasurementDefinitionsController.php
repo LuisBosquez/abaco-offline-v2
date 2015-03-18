@@ -49,7 +49,7 @@ class MeasurementDefinitionsController extends AppController {
 			$data['MeasurementDefinition']['id'] = $measurementdefinition['MeasurementDefinition']['id'];
 			$data['MeasurementDefinition']['connection_id'] = $measurementdefinition['MeasurementDefinition']['connection_id'];
 			$data['MeasurementDefinition']['created'] = $measurementdefinition['MeasurementDefinition']['created'];
-			$data['MeasurementDefinition']['lastUpdated'] = date("Y-m-d H:i:s"); 
+			$data['MeasurementDefinition']['lastUpdated'] = $measurementdefinition['MeasurementDefinition']['lastUpdated'];
 			if ($this->MeasurementDefinition->save($data)) {
 				// Set a session flash message and redirect.
 				$this->Session->setFlash('Changes saved!');
@@ -83,6 +83,23 @@ class MeasurementDefinitionsController extends AppController {
 	
 	public function clear() {
         MeasurementDefinition::clear();
+    }
+	
+	public function add($id = null) {
+        if ($this->request->is('post')) {
+            $this->MeasurementDefinition->create();
+			
+			$data = $this->request->data;
+			$data['MeasurementDefinition']['connection_id'] = $id;
+			$data['MeasurementDefinition']['lastUpdated'] = "0000-00-00 00:00:00"; 
+			$data['MeasurementDefinition']['created'] = date("Y-m-d H:i:s"); 
+			
+            if ($this->MeasurementDefinition->save($data)) {
+                $this->Session->setFlash(__('Your measurement definition has been added.'));
+                return $this->redirect('/datasourceconnections');
+            }
+            $this->Session->setFlash(__('Unable to add your post.'));
+        }
     }
 }
 

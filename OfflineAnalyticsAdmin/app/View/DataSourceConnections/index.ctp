@@ -1,6 +1,16 @@
 <!-- File: /app/View/Posts/index.ctp -->
 
 <h1>DataSourceConnections</h1>
+<button>
+	<?php echo $this->Html->link(
+	"New",
+		array(
+			'controller' => 'datasourceconnections', 
+			'action' => 'add'
+			)
+		); 
+	?>
+</button>
 <table>
     <tr>
         <th>Id</th>
@@ -39,7 +49,7 @@
 			"Edit",
 				array(
 					'controller' => 'datasourceconnections', 
-					'action' => 'view', 
+					'action' => 'edit', 
 					$datasourceconnection['DataSourceConnection']['id']
 					)
 				); 
