@@ -26,14 +26,6 @@ class MeasurementDefinitionsController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
-		if ($this->request->is('post')) {
-			// If the form data can be validated and saved...
-			if ($this->MeasurementDefinition->save($this->request->data)) {
-				// Set a session flash message and redirect.
-				$this->Session->setFlash('Changes saved!');
-				return $this->redirect('/index');
-			}
-		}
 		
         $measurementdefinition = $this->MeasurementDefinition->findById($id);
         if (!$measurementdefinition) {
@@ -41,6 +33,53 @@ class MeasurementDefinitionsController extends AppController {
         }
         $this->set('measurementdefinition', $measurementdefinition);
     }
+	
+	public function edit($id)
+	{
+		$measurementdefinition = $this->MeasurementDefinition->findById($id);
+        if (!$measurementdefinition) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+		if (empty($this->request->data)) {
+			$this->request->data = $this->MeasurementDefinition->findById($id);
+		}
+		if ($this->request->is('post')) {
+			// If the form data can be validated and saved...
+			$data = $this->request->data;
+			$data['MeasurementDefinition']['id'] = $measurementdefinition['MeasurementDefinition']['id'];
+			$data['MeasurementDefinition']['connection_id'] = $measurementdefinition['MeasurementDefinition']['connection_id'];
+			$data['MeasurementDefinition']['created'] = $measurementdefinition['MeasurementDefinition']['created'];
+			$data['MeasurementDefinition']['lastUpdated'] = date("Y-m-d H:i:s"); 
+			if ($this->MeasurementDefinition->save($data)) {
+				// Set a session flash message and redirect.
+				$this->Session->setFlash('Changes saved!');
+				return $this->redirect('/measurementdefinitions');
+			}
+		}		
+		// If no form data, find the recipe to be edited
+		// and hand it to the view.
+		
+        $this->set('measurementdefinition', $measurementdefinition);
+	}
+	
+	public function delete($id)
+	{
+		$measurementdefinition = $this->MeasurementDefinition->findById($id);
+        if (!$measurementdefinition) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+		if($this->MeasurementDefinition->delete($id)){
+			$this->Session->setFlash(
+				__('The post with id: %s has been deleted.', h($id))
+			);
+		}
+		else {
+			$this->Session->setFlash(
+				__('The post with id: %s could not be deleted.', h($id))
+			);
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 	
 	public function clear() {
         MeasurementDefinition::clear();

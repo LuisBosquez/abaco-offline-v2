@@ -60,8 +60,8 @@
             <?php echo $this->Html->link(
 			"Edit",
 				array(
-					'controller' => 'measurementdefinitions', 
-					'action' => 'view', 
+					'controller' => 'MeasurementDefinitions', 
+					'action' => 'edit', 
 					$measurementdefinition['MeasurementDefinition']['id']
 					)
 				); 
@@ -73,7 +73,7 @@
 			<?php echo $this->Html->link(
 				"Delete",
 				array(
-					'controller' => 'measurementdefinitions', 
+					'controller' => 'MeasurementDefinitions', 
 					'action' => 'delete', 
 					$measurementdefinition['MeasurementDefinition']['id']
 					)

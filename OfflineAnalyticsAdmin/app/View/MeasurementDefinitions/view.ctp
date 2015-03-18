@@ -1,19 +1,39 @@
 <!-- File: /app/View/Posts/view.ctp -->
-
+<button>
+<?php echo $this->Html->link(
+	"Back",
+		array(
+			'controller' => 'measurementdefinitions', 
+			'action' => 'index'
+			)
+		); 
+?>
+</button>
 <h1><?php echo h($measurementdefinition['MeasurementDefinition']['name']); ?></h1>
 
+<button>
+<?php echo $this->Html->link(
+"Edit",
+	array(
+		'controller' => 'MeasurementDefinitions', 
+		'action' => 'edit', 
+		$measurementdefinition['MeasurementDefinition']['id']
+		)
+	); 
+?>
+</button>
+<button>
+<?php echo $this->Html->link(
+	"Delete",
+	array(
+		'controller' => 'MeasurementDefinitions', 
+		'action' => 'delete', 
+		$measurementdefinition['MeasurementDefinition']['id']
+		)
+	); 
+?>
+</button>
 <p><?php echo $measurementdefinition['MeasurementDefinition']['targetTable']; ?></p>
 <p><?php echo $measurementdefinition['MeasurementDefinition']['fields']; ?></p>
 <p><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></p>
-<p><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></p>
-<p><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></p>
 
-<?php echo $this->Form->create('MeasurementDefinition', array('action' => 'view'));?>
-<?php echo $this->Form->input('MeasurementDefinition.name', array('label' => 'Connection Name'));?>
-<?php echo $this->Form->input('MeasurementDefinition.targetTable', array('label' => 'Target Table')););?>
-<?php echo $this->Form->input('MeasurementDefinition.fields', array('label' => 'Fields list')););?>
-
-<?php echo $this->Form->input('MeasurementDefinition.fieldMappings', array('label' => 'Field mappings'));?>
-<?php echo $this->Form->input('MeasurementDefinition.lastUpdated', array('label' => 'Last updated'));?>
-
-<?php echo $this->Form->end('Add');?>
