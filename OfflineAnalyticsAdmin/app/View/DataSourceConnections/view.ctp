@@ -10,18 +10,19 @@
 		); 
 ?>
 </button>
-<h1>Data Source Connection:</h1>
+<h2>Data Source Connection:</h2>
 
-<h2><?php echo h($datasourceconnection['DataSourceConnection']['name']); ?></h2>
+<h3><?php echo h($datasourceconnection['DataSourceConnection']['name']); ?></h3>
 
-<p><?php echo h($datasourceconnection['DataSourceConnection']['id']); ?></p>
-<p><?php echo h($datasourceconnection['DataSourceConnection']['host']); ?></p>
-<p><?php echo h($datasourceconnection['DataSourceConnection']['username']); ?></p>
-<p><?php echo h($datasourceconnection['DataSourceConnection']['password']); ?></p>
-<p><?php echo h($datasourceconnection['DataSourceConnection']['targetDatabase']); ?></p>
+<p>ID: <?php echo h($datasourceconnection['DataSourceConnection']['id']); ?></p>
+<p>Host: <?php echo h($datasourceconnection['DataSourceConnection']['host']); ?></p>
+<p>Username: <?php echo h($datasourceconnection['DataSourceConnection']['username']); ?></p>
+<p>Password: <?php echo h($datasourceconnection['DataSourceConnection']['password']); ?></p>
+<p>Database: <?php echo h($datasourceconnection['DataSourceConnection']['targetDatabase']); ?></p>
 
 
-<h2>MeasurementDefinitions</h2>
+<h3>MeasurementDefinitions</h3>
+<button></button>
 <table>
     <tr>
         <th>Id</th>
@@ -54,6 +55,32 @@
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
+		<td>
+			<button>
+            <?php echo $this->Html->link(
+			"Edit",
+				array(
+					'controller' => 'measurementdefinitions', 
+					'action' => 'view', 
+					$measurementdefinition['MeasurementDefinition']['id']
+					)
+				); 
+			?>
+			</button>
+        </td>
+		<td>
+            <button>
+			<?php echo $this->Html->link(
+				"Delete",
+				array(
+					'controller' => 'measurementdefinitions', 
+					'action' => 'delete', 
+					$measurementdefinition['MeasurementDefinition']['id']
+					)
+				); 
+			?>
+			</button>
+        </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($measurementdefinition); ?>

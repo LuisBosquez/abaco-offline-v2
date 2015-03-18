@@ -26,6 +26,15 @@ class MeasurementDefinitionsController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
+		if ($this->request->is('post')) {
+			// If the form data can be validated and saved...
+			if ($this->MeasurementDefinition->save($this->request->data)) {
+				// Set a session flash message and redirect.
+				$this->Session->setFlash('Changes saved!');
+				return $this->redirect('/index');
+			}
+		}
+		
         $measurementdefinition = $this->MeasurementDefinition->findById($id);
         if (!$measurementdefinition) {
             throw new NotFoundException(__('Invalid post'));
