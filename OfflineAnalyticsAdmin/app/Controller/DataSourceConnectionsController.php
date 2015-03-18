@@ -7,6 +7,7 @@ class DataSourceConnectionsController extends AppController {
     }
 	
 	public function view($id = null) {
+		$this->loadModel('MeasurementDefinition');
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
@@ -15,6 +16,17 @@ class DataSourceConnectionsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
         $this->set('datasourceconnection', $datasourceconnection);
+		
+        $measurementdefinitions = $this->MeasurementDefinition->find('all', array(
+        'conditions' => array('MeasurementDefinition.connection_id' => $id)
+		));
+		
+        if (!$measurementdefinitions) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+        $this->set('measurementdefinitions', $measurementdefinitions);
+		
+		
     }
 	
 	public function delete($id = null) {

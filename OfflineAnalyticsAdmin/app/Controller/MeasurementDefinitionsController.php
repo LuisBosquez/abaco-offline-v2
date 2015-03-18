@@ -20,7 +20,6 @@ class MeasurementDefinitionsController extends AppController {
             throw new NotFoundException(__('Invalid post'));
         }
         $this->set('measurementdefinitions', $measurementdefinitions);
-		
 	}
 	
 	public function view($id = null) {
