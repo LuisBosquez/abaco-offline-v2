@@ -62,6 +62,8 @@
         <th>targetTable</th>
         <th>fields</th>
         <th>fieldMappings</th>
+        <th>dateFieldname</th>
+        <th>clientIdFieldname</th>
         <th>lastUpdated</th>
 		<th>created</th>
     </tr>
@@ -85,6 +87,8 @@
 			<td><?php echo $measurementdefinition['MeasurementDefinition']['targetTable']; ?></td>
 			<td><?php echo $measurementdefinition['MeasurementDefinition']['fields']; ?></td>
 			<td><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['dateFieldname']; ?></td>
+			<td><?php echo $measurementdefinition['MeasurementDefinition']['clientIdFieldname']; ?></td>
 			<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
 			<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
 			<td>

@@ -53,7 +53,7 @@ class MeasurementDefinitionsController extends AppController {
 			if ($this->MeasurementDefinition->save($data)) {
 				// Set a session flash message and redirect.
 				$this->Session->setFlash('Changes saved!');
-				return $this->redirect('/measurementdefinitions');
+				return $this->redirect('/datasourceconnections');
 			}
 		}		
 		// If no form data, find the recipe to be edited
