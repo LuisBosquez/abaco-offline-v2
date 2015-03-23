@@ -1,5 +1,14 @@
 <!-- File: /app/View/Posts/index.ctp -->
-
+<button>
+<?php echo $this->Html->link(
+	"Back to DataSourceConnections",
+		array(
+			'controller' => 'datasourceconnections', 
+			'action' => 'index'
+			)
+		); 
+?>
+</button>
 <h1>MeasurementDefinitions</h1>
 <table>
     <tr>
@@ -31,6 +40,9 @@
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['targetTable']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['fields']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['fieldMappings']; ?></td>
+		<td><?php echo $measurementdefinition['MeasurementDefinition']['dateFieldname']; ?></td>
+		<td><?php echo $measurementdefinition['MeasurementDefinition']['clientIdFieldname']; ?></td>
+		<td><?php echo $measurementdefinition['MeasurementDefinition']['staticParameters']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
     </tr>

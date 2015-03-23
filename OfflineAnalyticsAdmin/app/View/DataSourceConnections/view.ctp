@@ -46,7 +46,7 @@
 
 <button>
 <?php echo $this->Html->link(
-"Add",
+"Add Measurement Definition",
 	array(
 		'controller' => 'measurementdefinitions', 
 		'action' => 'add', 

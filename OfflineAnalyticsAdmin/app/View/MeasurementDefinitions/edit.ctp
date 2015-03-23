@@ -2,7 +2,7 @@
 <?php echo $this->Html->link(
 	"Back",
 		array(
-			'controller' => 'measurementdefinitions', 
+			'controller' => 'datasourceconnections', 
 			'action' => 'index'
 			)
 		); 
