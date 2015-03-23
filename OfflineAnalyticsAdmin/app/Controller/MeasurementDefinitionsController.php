@@ -50,6 +50,7 @@ class MeasurementDefinitionsController extends AppController {
 			$data['MeasurementDefinition']['connection_id'] = $measurementdefinition['MeasurementDefinition']['connection_id'];
 			$data['MeasurementDefinition']['created'] = $measurementdefinition['MeasurementDefinition']['created'];
 			$data['MeasurementDefinition']['lastUpdated'] = $measurementdefinition['MeasurementDefinition']['lastUpdated'];
+			$data['MeasurementDefinition']['lastUpdated'] = date("Y-m-d H:i:s"); 
 			if ($this->MeasurementDefinition->save($data)) {
 				// Set a session flash message and redirect.
 				$this->Session->setFlash('Changes saved!');
@@ -91,7 +92,7 @@ class MeasurementDefinitionsController extends AppController {
 			
 			$data = $this->request->data;
 			$data['MeasurementDefinition']['connection_id'] = $id;
-			$data['MeasurementDefinition']['lastUpdated'] = "0000-00-00 00:00:00"; 
+			$data['MeasurementDefinition']['lastUpdated'] = date("Y-m-d H:i:s"); 
 			$data['MeasurementDefinition']['created'] = date("Y-m-d H:i:s"); 
 			
             if ($this->MeasurementDefinition->save($data)) {
