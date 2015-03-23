@@ -44,6 +44,7 @@
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['clientIdFieldname']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['staticParameters']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['lastUpdated']; ?></td>
+		<td><?php echo $measurementdefinition['MeasurementDefinition']['extractionStartDate']; ?></td>
 		<td><?php echo $measurementdefinition['MeasurementDefinition']['created']; ?></td>
     </tr>
     <?php endforeach; ?>

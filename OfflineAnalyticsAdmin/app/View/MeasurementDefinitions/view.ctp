@@ -39,4 +39,5 @@
 <p><?php echo $measurementdefinition['MeasurementDefinition']['dateFieldname']; ?></p>
 <p><?php echo $measurementdefinition['MeasurementDefinition']['clientIdFieldname']; ?></p>
 <p><?php echo $measurementdefinition['MeasurementDefinition']['staticParameters']; ?></p>
+<p><?php echo $measurementdefinition['MeasurementDefinition']['extractionStartDate']; ?></p>
 
